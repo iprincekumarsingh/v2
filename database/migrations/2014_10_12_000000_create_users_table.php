@@ -17,7 +17,9 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('role')->default('student');
+            $table->string('branch')->nullable();
             $table->string('email')->unique();
+            $table->string('regno')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

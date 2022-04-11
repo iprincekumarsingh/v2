@@ -5,9 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Branches extends Model
+class FacultyTodo extends Model
 {
     use HasFactory;
-    protected $table = "branches";
-    protected $primaryKey = "branch_id";
 }
