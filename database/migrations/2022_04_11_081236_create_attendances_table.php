@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('attendances', function (Blueprint $table) {
             $table->id('aid');
             $table->string('a_status');
+            $table->string('id');
             $table->timestamps();
         });
     }
