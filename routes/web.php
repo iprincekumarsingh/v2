@@ -69,10 +69,10 @@ Route::middleware([
                 // $newad->dob = $today_date;
                 $newad->a_status = 1;
                 $newad->save();
-                return response()->json(array('msg' => $request['code'], 'code' => 1), 200);
+                return response()->json(array('status'=>1), 201);
             }
         } else {
-            return response()->json(array('msg' => "Code Verification Failed"), 404);
+            return response()->json(array("status"=>0));
         }
     })->name('attendance-submit');
     Route::get('/attendance', function () {
@@ -102,7 +102,9 @@ Route::middleware([
         Route::post('/student', 'filterBranch')->name('filterBranch');
     });
     Route::controller(FacultyController::class)->group(function () {
-        Route::get('/todo', 'todo')->name('fatodo'); //faculty todo
+        Route::get('/todo', 'todoview')->name('fatodoviw'); //faculty todo
+        Route::get('/tododata', 'todo')->name('fatodo'); //faculty todo
+
         Route::post('/todo', 'todoSave')->name('fatodoSave'); //faculty todo
         Route::get('/todo/{delete}', 'todoDelete')->name('fatodoDelete'); //faculty todo
         Route::get('/codesave', 'savecode');

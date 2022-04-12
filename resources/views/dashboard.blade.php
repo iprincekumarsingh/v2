@@ -1,5 +1,7 @@
 {{-- <x-app-layout> --}}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
 @if (Auth::user()->role == 'admin')
     @include('admin.homeAdmin')
@@ -7,9 +9,12 @@
     @include('facultites.dashfal')
 @else
     <style>
+        .error {
+            background: rgb(210, 50, 50);
+            width: 400px;
+            border-radius: 5px;
 
-
-
+        }
 
     </style>
 
@@ -39,6 +44,8 @@
             </div>
         </div>
     </div>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <script>
         function hello() {
             // let _token = $('meta[name="csrf-token"]').attr('content');
@@ -54,7 +61,33 @@
                 },
                 cache: false,
                 success: function(data) {
-                    window.location.reload()
+                    if (data.status == 1) {
+                        Toastify({
+                            text: "Todo added successfully",
+                            className: "success",
+                            duration: 3000,
+                            style: {
+                                background: "linear-gradient(to right, #00b09b, #96c93d)",
+                            }
+                        }).showToast();
+                        setTimeout(function() {
+                            window.location.reload()
+
+                        }, 3000);
+                    } else {
+                        Toastify({
+                            text: "Failed to Submit",
+                            className: "error",
+                            duration: 3000,
+                            // close:false;
+                            // style: {
+                            //     background: "linear-gradient(to right, #00b09b, #96c93d)",
+                            // }
+                        }).showToast();
+
+
+                    }
+
                 }
             });
         }

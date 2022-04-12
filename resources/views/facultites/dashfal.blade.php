@@ -21,7 +21,6 @@
 
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-
         var hello = document.getElementById("codeg").innerHTML = "";
 
         const characters = '0123456789';
@@ -45,14 +44,16 @@
                 },
                 cache: false,
                 success: function(data) {
-                    Swal.fire(
-                        'Code Genrated Successfully!',
-                        '',
-                        'success'
-                    )
+                    Toastify({
+                        text: "Code Genrated Successfully",
+                        className: "success",
+                        duration: 3000,
+                        style: {
+                            background: "linear-gradient(to right, #00b09b, #96c93d)",
+                        }
+                    }).showToast();
                 }
             });
 
         }
-
     </script>

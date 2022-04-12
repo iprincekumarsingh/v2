@@ -1,5 +1,5 @@
 <li class="nav-item">
-    <a href="{{ route('fatodo') }}" class="nav-link d-flex justify-content-between">
+    <a href="{{ route('fatodoviw') }}" class="nav-link d-flex justify-content-between">
         <span>
             <span class="sidebar-icon">
                 <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20"

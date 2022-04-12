@@ -13,7 +13,13 @@ class FacultyController extends Controller
     public function todo()
     {
         $todo = FacultyTodo::where('f_user_id', Auth::user()->id)->get();
-        return view('facultites.todo')->with(compact('todo'));
+
+        return  response()->json(array('todo' => $todo), 200);
+    }
+    public function todoview()
+    {
+        return view('facultites.todo');
+        # code...
     }
     public function todoSave(Request $request)
     {
@@ -22,7 +28,9 @@ class FacultyController extends Controller
         $todo->text = $request['text'];
         $todo->f_user_id = Auth::user()->id;
         $todo->save();
-        return back();
+        return response()->json(array('status' => 1), 200);
+
+        // return back();
     }
     public function todoDelete($delete)
     {

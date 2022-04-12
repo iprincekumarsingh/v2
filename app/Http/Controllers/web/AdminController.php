@@ -16,6 +16,7 @@ class AdminController extends Controller
         // fetching student
         $branch = Branches::get();
         $student = User::select('id', 'name', 'branch', 'regno')
+        ->where('role','student')
             ->paginate(15);
         return view('admin.student')->with(compact('student', 'branch'));
     }
