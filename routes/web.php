@@ -5,6 +5,8 @@ use App\Http\Controllers\web\FacultyController;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
 use App\Models\Attendances;
+use App\Models\CodeGenerate;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -47,24 +49,30 @@ Route::middleware([
         }
         return view('dashboard');
     })->name('dashboard');
-    Route::post('/attendance', function () {
-        $attendance = Attendances::where('id', Auth::user()->id)
-            ->orderBy('aid', 'DESC')
+    Route::post('/attendance', function (Request $request) {
+
+
+        $codeverif = CodeGenerate::where('code', $request['code'])
             ->first();
-        $today_date = now()->format('y-m-d');
+        if ($codeverif) {
+            // return response()->json(array('msg' => "Code Successfully Matched"), 200);
+            $attendance = Attendances::where('id', Auth::user()->id)
+                ->orderBy('aid', 'DESC')
+                ->first();
+            $today_date = now()->format('y-m-d');
 
-        // checking the attendance is null or not
-        if ($attendance == null || $attendance['updated_at']->format('y-m-d') != $today_date) {
+            // checking the attendance is null or not
+            if ($attendance == null || $attendance['updated_at']->format('y-m-d') != $today_date) {
 
-            $newad = new Attendances;
-            $newad->id = Auth::user()->id;
-            // $newad->dob = $today_date;
-            $newad->a_status = 1;
-            $newad->save();
-            return to_route('dashboard');
+                $newad = new Attendances;
+                $newad->id = Auth::user()->id;
+                // $newad->dob = $today_date;
+                $newad->a_status = 1;
+                $newad->save();
+                return response()->json(array('msg' => $request['code'], 'code' => 1), 200);
+            }
         } else {
-
-            return to_route('dashboard');
+            return response()->json(array('msg' => "Code Verification Failed"), 404);
         }
     })->name('attendance-submit');
     Route::get('/attendance', function () {
@@ -97,6 +105,6 @@ Route::middleware([
         Route::get('/todo', 'todo')->name('fatodo'); //faculty todo
         Route::post('/todo', 'todoSave')->name('fatodoSave'); //faculty todo
         Route::get('/todo/{delete}', 'todoDelete')->name('fatodoDelete'); //faculty todo
-
+        Route::get('/codesave', 'savecode');
     });
 });

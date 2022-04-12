@@ -7,6 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     @include('links.css')
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
 </head>
 
 <body>
@@ -87,6 +89,17 @@
                                     @else
                                         @include('layouts.faculNav')
                                     @endif
+                                    <li class="nav-item   ">
+                                        <a href="{{ route('logout') }}" class="nav-link">
+                                            <span class="sidebar-icon">
+                                                <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20"
+                                                    xmlns="http://www.w3.org/2000/svg">
+
+                                                </svg>
+                                            </span>
+                                            <span class="sidebar-text">Logout</span>
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
