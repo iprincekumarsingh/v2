@@ -47,8 +47,8 @@
                     {{-- student --}}
                 @else
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                        <x-jet-nav-link href="{{ route('attendance') }}" :active="request()->routeIs('attendance')">
-                            {{ __('Attendance') }}
+                        <x-jet-nav-link href="{{ route('agn.student') }}" :active="request()->routeIs('agn.student')">
+                            {{ __('Assignment') }}
                         </x-jet-nav-link>
                     </div>
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">

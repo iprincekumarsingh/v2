@@ -26,7 +26,7 @@
                      clip-rule="evenodd"></path>
              </svg>
          </span>
-         <span class="sidebar-text">Branch</span>
+         <span class="sidebar-text">Branch Information</span>
      </a>
  </li>
  <li class="nav-item ">

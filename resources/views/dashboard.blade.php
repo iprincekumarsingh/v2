@@ -8,6 +8,7 @@
 @elseif(Auth::user()->role == 'facul')
     @include('facultites.dashfal')
 @else
+<x-app-layout>
     <style>
         .error {
             background: rgb(210, 50, 50);
@@ -92,4 +93,5 @@
             });
         }
     </script>
+</x-app-layout>
 @endif

@@ -49,8 +49,8 @@
                                                 </path>
                                             </svg>
                                         </span>
-                                        <input type="email" class="form-control" name="email" placeholder="21410410XX" id="email"
-                                            autofocus required>
+                                        <input type="text" class="form-control" name="email" placeholder="21410410XX"
+                                            id="email" autofocus required>
                                     </div>
                                 </div>
                                 <!-- End of Form -->
@@ -67,8 +67,8 @@
                                                         clip-rule="evenodd"></path>
                                                 </svg>
                                             </span>
-                                            <input type="password"name="password" placeholder="Password" class="form-control"
-                                                id="password" required>
+                                            <input type="password" name="password" placeholder="Password"
+                                                class="form-control" id="password" required>
                                         </div>
                                     </div>
                                     <!-- End of Form -->
@@ -81,17 +81,18 @@
                                         </div>
                                         <div>
                                             @if (Route::has('password.request'))
-                                            <a href="{{ route('password.request') }}" class="small text-right">Lost
-                                                password?</a>
-                                                @endif
-                                            </div>
+                                                <a href="{{ route('password.request') }}"
+                                                    class="small text-right">Lost
+                                                    password?</a>
+                                            @endif
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="d-grid">
                                     <x-jet-button class="btn btn-gray-800">
                                         {{ __('Log in') }}
                                     </x-jet-button>
-                                   
+
                                 </div>
                             </form>
 

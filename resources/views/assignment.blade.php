@@ -1,26 +1,43 @@
 <x-app-layout>
     @include('links.css')
 
-<div class="card card-body border-0 shadow">
-    <h2 class="h5 mb-4">Upload Assignment</h2>
-    <input type="text" style="width:300px;" class="me-5" name="" placeholder="Title" id="">
-    <div class="d-flex align-items-center">
-        <div class="me-3">
-            <!-- Avatar -->
-            <img class="rounded avatar-xl" src="../assets/img/profile-cover.jpg" alt="change cover">
+    <div class="card card-body border-0 shadow">
+        <h2>Branch: {{ Auth::user()->branch }}</h2>
+        <h2 class="h5 mb-4">Upload Assignment</h2>
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Subject</label>
+            {{-- <label class="my-1 me-2" for="country">Country</label> --}}
+            @if (count($subject) > 0)
+                <h1>No Subject Alloted</h1>
+            @else
+                <select class="form-select" id="country" aria-label="Default select example">
+                    <option selected>Choose Subject</option>
+                    @foreach ($subject as $sname)
+                        <option value="{{ $sname['subject_id'] }}">{{ $sname['subject_name'] }}</option>
+                    @endforeach
+            @endif
+
+
+
+            </select>
         </div>
-        <div class="file-field">
-            <div class="d-flex justify-content-xl-center ms-xl-3">
-                <div class="d-flex">
-                    <svg class="icon text-gray-500 me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z" clip-rule="evenodd"></path></svg>
-                    <input type="file">
-                    <div class="d-md-block text-left">
-                        <div class="fw-normal text-dark mb-1">Choose Image</div>
-                        <div class="text-gray small">JPG,PDF,GIF or PNG. Max size of 2MB</div>
-                    </div>
-                </div>
-            </div>
-         </div>                                        
-    </div>
+        <label class="my-1 me-2" for="country">Choose Semester</label>
+        <select class="form-select" id="country" aria-label="Default select example">
+            <option selected>Choose Sem</option>
+            <?php
+            $sem_code = 8;
+            ?>
+
+                    @for ($i = 1; $i <= $sem_code; $i++)
+                            <option value="{{ $i }}">{{ $i }}</option>
+                            @if (Auth::user()->branch == 'DEMO_DATA')
+                                @if ($i == 6)
+                                @break
+                            @endif
+                        @endif
+                    @endfor
+
+
+    </select>
 </div>
 </x-app-layout>
