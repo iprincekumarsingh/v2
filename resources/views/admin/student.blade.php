@@ -1,5 +1,5 @@
  @include('layouts.aheader')
- 
+
  <div class="card border-0 shadow mb-4">
      <div class="card card-body border-0 shadow mb-4">
 
@@ -54,7 +54,8 @@
                      <td style="text-align: center">
                          <a class="btn btn-outline-danger"
                              href="{{ url('user-profile') }}/{{ $user['regno'] }}">Profile</a>
-                         <a class="btn btn-outline-info" href="{{ $user['name'] }}/{{ $user['id'] }}">Attendance</a>
+                         <a class="btn btn-outline-info"
+                             href="{{ url('/userfattendance') }}/{{ $user['name'] }}/{{ $user['id'] }}">Attendance</a>
                      </td>
 
 

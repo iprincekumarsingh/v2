@@ -78,10 +78,14 @@ Route::middleware([
     Route::controller(AdminController::class)->group(function () {
         Route::get('/student', 'student')->name('student');
         Route::get('/user-profile/{regno}', 'studentprofile')->name('studentdata');
-        Route::get('/userfattendance/{uid}', 'studentattendance')->name('studentattendance');
+        Route::get('/userfattendance/{name}/{uid}', 'studentattendance')->name('studentattendance');
         Route::get('/branch', 'branch')->name('branch');
         Route::post('/branchSave', 'branchSave')->name('branchSave');
         Route::post('/student', 'filterBranch')->name('filterBranch');
+
+        //block attendance of a user who submit the fake attendance;
+
+        Route::get('/blockatd/{id}', 'adblock');  //block attendance
     });
     // Faculty Controller
     Route::controller(FacultyController::class)->group(function () {
@@ -91,6 +95,9 @@ Route::middleware([
         Route::post('/todo', 'todoSave')->name('fatodoSave'); //faculty todo
         Route::get('/todo/{delete}', 'todoDelete')->name('fatodoDelete'); //faculty todo
         Route::get('/codesave', 'savecode');
+
+        Route::get('/profile1', 'faculprofile')->name('facul.profile');
+        Route::get('/codedelete', 'deletecode');
     });
 
     Route::controller(StudentController::class)->group(function () {

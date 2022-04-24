@@ -44,6 +44,8 @@
                 @endif
             </div>
         </div>
+        <div id="data" style="display: flex;flex-wrap:wrap;justify-content:center;margin-top:1px" class="hero-flex">
+
     </div>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 

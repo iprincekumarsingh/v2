@@ -49,4 +49,19 @@ class FacultyController extends Controller
         $savecode->save();
         return response()->json(array('msg' => "Code updated successfully"), 200);
     }
+    public function faculprofile()
+    {
+
+        return view('facultites.faculprofile');
+    }
+    // faculty delete code
+
+    public function deletecode()
+    {
+
+        $codeData = CodeGenerate::where('fa_id', Auth::user()->id)->get();
+        return response()->json(array('code' => $codeData));
+        // return back();
+
+    }
 }

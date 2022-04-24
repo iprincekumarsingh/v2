@@ -43,9 +43,10 @@ class AdminController extends Controller
             $branch->save();
         } elseif ($request['key'] == 1) {
             $subBranches = new Sub_Branches;
-            $subBranches->sub_name = $request['sub_branch'];
+            $subBranches->sub_name = $request['name'];
             $subBranches->branch_id = $request['branch'];
             $subBranches->save();
+            // echo "Added succesfully";
         } elseif ($request['key'] == 2) {
             $subject = new Subject;
             $subject->sub_branch_id = $request['sub_branch'];
@@ -63,8 +64,31 @@ class AdminController extends Controller
     }
     public function studentattendance($name, $uid)
     {
-        $studentPAttendance = Attendances::where('id', $uid)->get();
+        try {
+            //code...
+            $studentPAttendance = Attendances::where('id', $uid)
+                ->where('a_status', 1)
+                ->get();
+            // getting the attendance on the block status of a particular using their index no.
 
-        return view('attendance')->with(compact('studentPAttendance', 'name'));
+
+            return view('attendance')->with(compact('studentPAttendance', 'name'));
+        } catch (\Throwable $th) {
+            //throw $th;
+            echo "<h1>Something went Wrong";
+        }
+    }
+    public function adblock($id)
+    {
+        try {
+            //code...
+            $data = Attendances::find($id);
+            $data->a_status = 0;
+            $data->update();
+            return back();
+        } catch (\Throwable $th) {
+            //throw $th;
+            return back();
+        }
     }
 }
